@@ -21,7 +21,7 @@ func main() {
 	config.Init()
 	cfg := config.GetConfig()
 
-	err := protoprovider.Init(cfg.ProtoPaths, cfg.ProtoFiles)
+	err := protoprovider.Init(cfg.ProtoPaths, cfg.ProtoFiles, cfg.ProtoSetFiles)
 	if err != nil {
 		logrus.Fatal("Proto files init error: ", err)
 	}

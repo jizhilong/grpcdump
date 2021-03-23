@@ -3,6 +3,7 @@ module github.com/rmedvedev/grpcdump
 go 1.12
 
 require (
+	github.com/golang/protobuf v1.3.2
 	github.com/google/gopacket v1.1.18-0.20191009163724-0ad7f2610e34
 	github.com/jhump/protoreflect v1.6.0
 	github.com/kr/pretty v0.1.0 // indirect

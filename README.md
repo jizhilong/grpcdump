@@ -28,7 +28,14 @@ The next option explains usage doc
 ```bash
 grpcdump -help
 ```
+
 For example, to capture grpc traffic, parse grpc request and response you need to use this command:
 ```bash
 grpcdump -i lo -p 50051 -proto-path ./grpc/protofiles -proto-files helloworld.proto 
+```
+
+To parse requests and responses with proto definitions from [proto file descriptor set](https://developers.google.com/protocol-buffers/docs/techniques#self-description), use this command:
+
+```bash
+grpcdump -i lo -p 50051 -proto-set hello.pb.bin
 ```

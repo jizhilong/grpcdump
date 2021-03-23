@@ -15,6 +15,7 @@ type Config struct {
 	JSONOutput     bool
 	ProtoPaths     string
 	ProtoFiles     []string
+	ProtoSetFiles   []string
 }
 
 var config *Config
@@ -28,7 +29,16 @@ var (
 	jsonOutput     = flag.Bool("json", false, "Json output")
 	protoPaths     = flag.String("proto-path", "", "Paths with proto files")
 	protoFiles     = flag.String("proto-files", "", "Names of proto files")
+	protoSetFile   = flag.String("proto-set", "", "Names of files containing encoded FileDescriptorSet.")
 )
+
+func splitByComma(str string) []string {
+	if str == "" {
+		return make([]string, 0)
+	} else {
+		return strings.Split(str, ",")
+	}
+}
 
 //Init inits config
 func Init() {
@@ -42,7 +52,8 @@ func Init() {
 		*colorOutput,
 		*jsonOutput,
 		*protoPaths,
-		strings.Split(*protoFiles, ","),
+		splitByComma(*protoFiles),
+		splitByComma(*protoSetFile),
 	}
 }
 

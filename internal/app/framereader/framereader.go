@@ -90,7 +90,10 @@ func (frameReader *FrameReader) Read(packet *models.Packet) (models.RenderModel,
 		}
 	case *http2.DataFrame:
 
-		stream, _ := frameReader.Streams.Get(connKey, streamID)
+		stream, existed := frameReader.Streams.Get(connKey, streamID)
+		if !existed {
+			return nil, fmt.Errorf("unknown stream %d", streamID)
+		}
 
 		grpcMessage, err := grpc.Decode(stream.Path, frame, stream.Type, &stream.GrpcState)
 		if err != nil {
